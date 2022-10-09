@@ -1,0 +1,50 @@
+{
+  "Users": [
+    {
+      "id": "1584177315024",
+      "username": "aschuy",
+      "password": "aschuy",
+      "role": "member",
+      "name": "Truong Gia Huy"
+    },
+    {
+      "id": "1584177319076",
+      "username": "ascson",
+      "password": "ascson",
+      "role": "member",
+      "name": "Nguyen Thanh Son"
+    },
+    {
+      "id": "1584135467076",
+      "username": "ascdat",
+      "password": "ascdat",
+      "role": "Leader",
+      "name": "Phan Tan Dat"
+    },
+    {
+      "id": "1593847467076",
+      "username": "ascnguyen",
+      "password": "ascnguyen",
+      "role": "Manager",
+      "name": "Vo Binh Nguyen"
+    }
+  ],
+  "Tasks": [
+    {
+      "id": "1",
+      "Title": "Task 1"
+    },
+    {
+      "id": "2",
+      "Title": "Task 2"
+    },
+    {
+      "id": "3",
+      "Title": "Task 3"
+    },
+    {
+      "id": "4",
+      "Title": "Task 4"
+    }
+  ]
+}
