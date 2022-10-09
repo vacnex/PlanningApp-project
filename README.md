@@ -27,6 +27,12 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
+### Start Dummy API sever
+
+```sh
+npm run server
+```
+
 ### Compile and Hot-Reload for Development
 
 ```sh
