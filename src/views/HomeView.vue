@@ -16,9 +16,7 @@ import RightSidebar from '../components/RightSidebarComponent.vue';
         <el-main>
           home page conent
         </el-main>
-        <el-aside>
-          <RightSidebar />
-        </el-aside>
+        <RightSidebar />
       </el-container>
       <Footer />
     </el-container>
