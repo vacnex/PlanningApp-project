@@ -9,7 +9,8 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       meta: { requiresAuth: true }
-    }, {
+    },
+    {
       path: '/manager',
       name: 'manager',
       // route level code-splitting
@@ -43,9 +44,19 @@ const router = createRouter({
     },
   ],
 });
-router.beforeEach((to) => {
-  const user = useUserStore();
-  if (to.meta.requiresAuth && !user.isLoggedIn) return '/login';
-  if (!to.meta.requiresAuth && user.isLoggedIn) return '/';
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  const currentUser = useUserStore().isLoggedIn;
+
+  if (requiresAuth && !currentUser) {
+    sessionStorage.setItem('redirectPath', to.path);
+    next('/login');
+  } else if (requiresAuth && currentUser) {
+    next();
+  } else {
+    next();
+  }
 });
+
+
 export default router;
