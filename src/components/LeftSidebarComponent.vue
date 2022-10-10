@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
   Setting
-} from '@element-plus/icons-vue'
+} from '@element-plus/icons-vue';
 </script>
 <template>
   <section class="sidebar my-xxl-2 ms-xxl-1  d-xxl-flex flex-xxl-column">
