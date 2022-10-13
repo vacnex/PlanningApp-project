@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
+import ElementPlus from 'unplugin-element-plus/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
@@ -12,20 +13,24 @@ export default defineConfig({
     vue({
       include: [/\.vue$/, /\.md$/],
     }),
+    ElementPlus(),
     AutoImport({
       imports: [
         'vue',
         'pinia',
-        'vue-router',
+        // 'vue-router',
         {
           'vue-router':[
             'createRouter',
             'createWebHistory',
           ],
           //Store import
-          '@/stores/UserStore/UserAuthenticated': [
-            'useUserAuthenticatedStore'
-          ],
+          // '@/stores/UserStore/UserAuthenticated': [
+          //   'useUserAuthenticatedStore'
+          // ],
+          // '@/stores/LocaleStore/UserAuthenticated': [
+          //   'useUserAuthenticatedStore'
+          // ],
           //Vue-Use helper import
           '@vueuse/core': [
             'useDark',
@@ -40,8 +45,9 @@ export default defineConfig({
       dts: 'src/auto-imports.d.ts',
       resolvers: [ElementPlusResolver()],
       dirs: [
+        './src/stores/**',
         './src/router',
-        // './src/composables/**'
+        './src/composables/**'
       ],
       eslintrc: {
         enabled: true, // Default `false`
