@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { Search } from '@element-plus/icons-vue';
-import { Sunrise, MoonNight } from '@element-plus/icons-vue';
-import { toggleDark } from '../composables/dark';
-import { ref } from 'vue';
+// import { Search } from '@element-plus/icons-vue';
+import { Search, Sunrise, MoonNight } from '@element-plus/icons-vue';
+import { toggleDark } from '../composables/DarkTheme';
+// import { ref } from 'vue';
 const isDarkMode = ref(false);
 const searchBox = ref();
 </script>

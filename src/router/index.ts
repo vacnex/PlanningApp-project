@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router';
+// import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import { useUserStore } from '@/stores/user';
+// import { useUserAuthenticatedStore } from '@/stores/UserStore/UserAuthenticated';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -46,7 +47,7 @@ const router = createRouter({
 });
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-  const currentUser = useUserStore().isLoggedIn;
+  const currentUser = useUserAuthenticatedStore().state;
 
   if (requiresAuth && !currentUser) {
     sessionStorage.setItem('redirectPath', to.path);

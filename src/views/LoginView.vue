@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { User, Lock } from '@element-plus/icons-vue';
-import { reactive, ref } from 'vue';
+// import { User, Lock } from '@element-plus/icons-vue';
+// import { reactive, ref } from '@vue/reactivity';
+// import { useUserAuthenticatedStore } from '@/stores/UserStore/UserAuthenticated';
 import type { FormInstance, FormRules } from 'element-plus';
-import { default as axios } from 'axios';
-import router from '@/router';
-import { useUserStore } from '@/stores/user';
+// import { default as axios } from 'axios';
+// import router from '@/router';
+// import { useUserStore } from '@/stores/user';
+
+
 const ruleFormRef = ref<FormInstance>();
 const checkboxRememberMe = ref(false);
 
@@ -52,7 +55,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       Authenticated(ruleForm.username, ruleForm.pass)
         .then(rs => {
           setCookie(rs.access_token);
-          useUserStore().isLoggedIn = true;
+          useUserAuthenticatedStore().state = true;
           router.replace(sessionStorage.getItem('redirectPath') || '/defaultpath');
           sessionStorage.removeItem('redirectPath');
           // alertMsg.value = rs;

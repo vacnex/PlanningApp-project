@@ -9,13 +9,57 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      include: [/\.vue$/, /\.md$/],
+    }),
     AutoImport({
+      imports: [
+        'vue',
+        'pinia',
+        'vue-router',
+        {
+          'vue-router':[
+            'createRouter',
+            'createWebHistory',
+          ],
+          //Store import
+          '@/stores/UserStore/UserAuthenticated': [
+            'useUserAuthenticatedStore'
+          ],
+          //Vue-Use helper import
+          '@vueuse/core': [
+            'useDark',
+            'useToggle'
+          ],
+          //Fetch library
+          'axios': [
+            ['default', 'axios'],
+          ],
+        }
+      ],
+      dts: 'src/auto-imports.d.ts',
       resolvers: [ElementPlusResolver()],
+      dirs: [
+        './src/router',
+        // './src/composables/**'
+      ],
+      eslintrc: {
+        enabled: true, // Default `false`
+        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+        globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+      },
     }),
     Components({
+      dirs: [
+        'src/components',
+        'src/views'
+      ],
+      extensions: ['vue', 'md'],
+      include: [/\.vue$/, /\.vue\?vue/, /\.md$/, /\.ts$/],
       resolvers: [ElementPlusResolver()],
+      dts: 'src/components.d.ts',
     }),
+    
   ],
   resolve: {
     alias: {
