@@ -5,15 +5,17 @@ import {
 </script>
 <template>
   <section class="sidebar my-xxl-2 ms-xxl-1 d-xxl-flex flex-xxl-column align-items-xxl-start">
-    <div>
-      <el-button link size="large">
-        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-      </el-button>
-    </div>
+    <ul class="list-unstyled">
+      <li>
+          <el-button link size="large">
+            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+          </el-button>
+      </li>
+    </ul>
     <el-divider />
     <div class="action ms-xxl-1 mt-auto">
       <el-button circle link size="large">
-        <el-icon :size="36">
+        <el-icon :size="24">
           <Setting />
         </el-icon>
       </el-button>
@@ -27,8 +29,8 @@ import {
   box-shadow: 0px 0px 2px rgba(40, 41, 61, 0.04), 0px 4px 8px rgba(96, 97, 112, 0.16);
   backdrop-filter: blur(80px);
   border-radius: 16px;
-  padding: 20px 22px;
-  width: 50px;
+  padding: 8px 10px;
+  /* width: 50px; */
   transition: width 1s ease-in-out;
 }
 

@@ -7,6 +7,8 @@ import ElementPlus from 'unplugin-element-plus/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
+const path = require('path');
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -24,13 +26,6 @@ export default defineConfig({
             'createRouter',
             'createWebHistory',
           ],
-          //Store import
-          // '@/stores/UserStore/UserAuthenticated': [
-          //   'useUserAuthenticatedStore'
-          // ],
-          // '@/stores/LocaleStore/UserAuthenticated': [
-          //   'useUserAuthenticatedStore'
-          // ],
           //Vue-Use helper import
           '@vueuse/core': [
             'useDark',
@@ -50,9 +45,9 @@ export default defineConfig({
         './src/composables/**'
       ],
       eslintrc: {
-        enabled: true, // Default `false`
-        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-        globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        enabled: true,
+        filepath: './.eslintrc-auto-import.json',
+        globalsPropValue: true,
       },
     }),
     Components({
@@ -70,6 +65,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
+      '~animate': path.resolve(__dirname, 'node_modules/animate.css/source'),
     },
   },
 });
