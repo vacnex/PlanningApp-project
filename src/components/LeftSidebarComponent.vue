@@ -4,7 +4,7 @@ import {
 } from '@element-plus/icons-vue';
 const isShrink = ref(false);
 const isActive = ref(false);
-const visible = ref(false)
+const visible = ref(false);
 const menus = reactive([
   {
     id: 1, text: 'Menu 1', hasSubMenu: true, submenu: [
