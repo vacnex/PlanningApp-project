@@ -7,7 +7,10 @@ import type { FormInstance, FormRules } from 'element-plus';
 // import router from '@/router';
 // import { useUserStore } from '@/stores/user';
 
-
+// TODO
+// [ ] Tự forcus vào username
+// [ ] Enter để đăng nhập
+// [ ] Chỗ để đổi theme
 const ruleFormRef = ref<FormInstance>();
 const checkboxRememberMe = ref(false);
 

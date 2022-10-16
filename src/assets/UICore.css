@@ -126,6 +126,7 @@ body {
 * {
   font-family: var(--el-font-family);
 }
+
 #app{
   min-height: 100vh;
 }

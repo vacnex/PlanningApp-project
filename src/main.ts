@@ -14,11 +14,12 @@ import '~animate/fading_entrances/fadeInUp.css';
 // #region overriding element-plus, custom component,utilities css
 import './assets/UICore.css';
 import './assets/custom-component.css';
-import './assets/bootstrap-utilities.scss';
+// TODO chuyển bootstrap-utilities thành import
+// import './assets/bootstrap-utilities.scss';
 // #endregion
 
 app.use(createPinia());
 app.use(router);
 
-
+// TODO Loại Bỏ các import đã sử dụng autoimport
 app.mount('#app');

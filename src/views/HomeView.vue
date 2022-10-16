@@ -6,7 +6,9 @@
 
 
 </script>
-
+<!-- TODO -->
+<!-- [ ] Bổ sung thanh breadcum -->
+<!-- [ ] dựng view quản lý task tuần -->
 <template>
   <el-container>
     <LeftSidebarComponent></LeftSidebarComponent>
