@@ -21,47 +21,46 @@ server.use(middlewares);
 // server.use(bodyParser.urlencoded({ extended: true }));
 // server.use(bodyParser.json());
 
-/** 
-* Create a token from a payload.
-* @param {any} payload - Data need encryption.
-* @return {string} Encryption token.
-*/
+/**
+ * It takes a payload, signs it with a secret key, and returns a token
+ * @param payload - The data you want to store in the token.
+ * @returns A token
+ */
 function createToken(payload) {
   return jwt.sign(payload, SECRET_KEY, { expiresIn });
 }
 
-/** 
-* Verify the token.
-* @param {string} token - token need verify.
-* @return {boolean} True if token is valid and false for invalid token.
-*/
+/**
+ * It takes a token as an argument, and returns the decoded token if it's valid, or an error if it's
+ * not
+ * @param token - The token to be verified.
+ * @returns The decoded token or an error.
+ */
 function verifyToken(token) {
   return jwt.verify(token, SECRET_KEY, (err, decode) => decode !== undefined ? decode : err);
 }
 
-/** 
-* Check user exist in database.
-* @param {Object} account - The account model.
-* @param {string} account.username - The username.
-* @param {string} account.password - The password.
-* @return {boolean} True if user exist in database and false if not found user.
-*/
+/**
+ * It returns true if the username and password combination exists in the data.Users array
+ * @returns A boolean value.
+ */
 function IsUserExist({ username, password }) {
   return data.Users.findIndex(user => user.username === username && user.password === password) !== -1;
 }
-/** 
-* get user role and id.
-* @param {Object} account - The account model.
-* @param {string} account.username - The username.
-* @param {string} account.password - The password.
-* @return  return object with role and id information
-*/
+/**
+ * GetUserInfo returns an object with an id and role property, where the id and role are taken from the
+ * user object in the data.Users array that has a matching username and password.
+ * @returns An object with the id and role of the user.
+ */
 function GetUserInfo({ username, password }) {
   const user = data.Users.find(user => user.username === username && user.password === password);
   return { id: user.id, role: user.role };
 }
 
 
+/* A POST request to the /api/login endpoint. It takes the username and password from the
+request body, and checks if the user exists in the data.Users array. If the user exists, it returns
+a token with the id and role of the user. If the user doesn't exist, it returns an error. */
 server.post('/api/login', (req, res) => {
   const { username, password } = req.query;
   if (IsUserExist({ username, password }) === false) {
