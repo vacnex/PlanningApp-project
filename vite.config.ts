@@ -22,7 +22,7 @@ export default defineConfig({
         'pinia',
         // 'vue-router',
         {
-          'vue-router':[
+          'vue-router': [
             'createRouter',
             'createWebHistory',
           ],
@@ -32,8 +32,9 @@ export default defineConfig({
             'useToggle'
           ],
           //Fetch library
+          //, 'AxiosInstance', 'AxiosRequestConfig', 'AxiosResponse'
           'axios': [
-            ['default', 'axios'],
+            ['default', 'axios']
           ],
         }
       ],
@@ -42,6 +43,10 @@ export default defineConfig({
       dirs: [
         './src/stores/**',
         './src/router',
+        './src/models',
+        './src/helpers',
+        './src/enums',
+        './src/servies',
         './src/composables/**'
       ],
       eslintrc: {

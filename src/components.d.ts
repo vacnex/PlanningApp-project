@@ -41,6 +41,7 @@ declare module '@vue/runtime-core' {
     ManagerView: typeof import('./views/ManagerView.vue')['default']
     MemberView: typeof import('./views/MemberView.vue')['default']
     MenuItem: typeof import('./components/Menu/MenuItem.vue')['default']
+    ProjectSelect: typeof import('./views/ProjectSelect.vue')['default']
     RightSidebarComponent: typeof import('./components/RightSidebarComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

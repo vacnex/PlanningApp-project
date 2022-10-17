@@ -22,4 +22,5 @@ app.use(createPinia());
 app.use(router);
 
 // TODO Loại Bỏ các import đã sử dụng autoimport
+// [x] Tạo lớp wrapper cơ bản cho axios
 app.mount('#app');

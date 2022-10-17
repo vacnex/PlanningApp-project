@@ -37,7 +37,9 @@ function createToken(payload) {
  * @returns The decoded token or an error.
  */
 function verifyToken(token) {
-  return jwt.verify(token, SECRET_KEY, (err, decode) => decode !== undefined ? decode : err);
+  return jwt.verify(token, SECRET_KEY, (err, decode) =>
+    decode !== undefined ? decode : err
+  );
 }
 
 /**
@@ -45,7 +47,11 @@ function verifyToken(token) {
  * @returns A boolean value.
  */
 function IsUserExist({ username, password }) {
-  return data.Users.findIndex(user => user.username === username && user.password === password) !== -1;
+  return (
+    data.Users.findIndex(
+      user => user.username === username && user.password === password
+    ) !== -1
+  );
 }
 /**
  * GetUserInfo returns an object with an id and role property, where the id and role are taken from the
@@ -53,16 +59,16 @@ function IsUserExist({ username, password }) {
  * @returns An object with the id and role of the user.
  */
 function GetUserInfo({ username, password }) {
-  const user = data.Users.find(user => user.username === username && user.password === password);
+  const user = data.Users.find(
+    user => user.username === username && user.password === password
+  );
   return { id: user.id, role: user.role };
 }
 
-
-/* A POST request to the /api/login endpoint. It takes the username and password from the
-request body, and checks if the user exists in the data.Users array. If the user exists, it returns
-a token with the id and role of the user. If the user doesn't exist, it returns an error. */
+// #region API Login
+/** A POST request to the /api/login endpoint. It takes the username and password from the request body, and checks if the user exists in the data.Users array. If the user exists, it returns a token with the id and role of the user. If the user doesn't exist, it returns an error. */
 server.post('/api/login', (req, res) => {
-  const { username, password } = req.query;
+  const { username, password } = req.body;
   if (IsUserExist({ username, password }) === false) {
     const status = 401;
     const message = 'Sai tên đăng nhập hoặc mật khẩu';
@@ -73,10 +79,13 @@ server.post('/api/login', (req, res) => {
   const access_token = createToken({ id, role });
   res.status(200).json({ access_token });
 });
-
+// #endregion
 
 server.use(/^(?!\/api).*$/, (req, res, next) => {
-  if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
+  if (
+    req.headers.authorization === undefined ||
+    req.headers.authorization.split(' ')[0] !== 'Bearer'
+  ) {
     const status = 401;
     const message = 'Bad authorization header';
     res.status(status).json({ status, message });

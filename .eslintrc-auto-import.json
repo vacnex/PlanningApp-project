@@ -1,6 +1,8 @@
 {
   "globals": {
+    "AccountStatusEnum": true,
     "EffectScope": true,
+    "Role": true,
     "acceptHMRUpdate": true,
     "axios": true,
     "computed": true,
@@ -13,6 +15,7 @@
     "defineComponent": true,
     "defineStore": true,
     "effectScope": true,
+    "fetchWrapper": true,
     "getActivePinia": true,
     "getCurrentInstance": true,
     "getCurrentScope": true,
@@ -66,6 +69,7 @@
     "useCssModule": true,
     "useCssVars": true,
     "useDark": true,
+    "useProjectStore": true,
     "useSlots": true,
     "useToggle": true,
     "useUserAuthenticatedStore": true,

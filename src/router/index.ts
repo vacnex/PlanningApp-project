@@ -19,14 +19,6 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/ManagerView.vue'),
       meta: { requiresAuth: true }
-    }, {
-      path: '/lead',
-      name: 'lead',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/MemberView.vue'),
-      meta: { requiresAuth: true }
     },{
       path: '/member',
       name: 'member',
@@ -48,12 +40,13 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
   const currentUser = useUserAuthenticatedStore().state;
-
   if (requiresAuth && !currentUser) {
     sessionStorage.setItem('redirectPath', to.path);
     next('/login');
   } else if (requiresAuth && currentUser) {
     next();
+  } else if (!requiresAuth && currentUser) {
+    next('/');
   } else {
     next();
   }

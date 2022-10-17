@@ -2,7 +2,5 @@
 </script>
 
 <template>
-  <main>
-    Member view
-  </main>
+  <div>select view</div>
 </template>

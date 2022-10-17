@@ -11,6 +11,7 @@ import type { FormInstance, FormRules } from 'element-plus';
 // [ ] Tự forcus vào username
 // [ ] Enter để đăng nhập
 // [ ] Chỗ để đổi theme
+// [x] Đưa Auth vào store
 const ruleFormRef = ref<FormInstance>();
 const checkboxRememberMe = ref(false);
 
@@ -30,49 +31,34 @@ let ShowMsg = ref(false);
 let alertType = ref();
 let alertMsg = ref('dummy');
 
-const setCookie = (value: string) => {
-  const now = new Date();
-  let time = now.getTime();
-  time += 3600 * 1000;
-  now.setTime(time);
-  console.log(new Date(Date.parse(now.toUTCString())));
-  document.cookie = 'token=' + value + '; expires=' + now.toUTCString() + ';';
-};
 
-const Authenticated = async (username: string, pw: string) => {
-  const options = {
-    method: 'POST',
-    url: 'http://localhost:3000/api/login',
-    params: { username: username, password: pw }
-  };
-
-  const response = await axios.request(options);
-  return response.data;
-};
 const submitForm = async (formEl: FormInstance | undefined) => {
   // isLoading.value = true;
   // LgText.value = 'ĐANG ĐĂNG NHẬP';
   if (!formEl) return;
   await formEl.validate((valid) => {
     if (valid) {
-      Authenticated(ruleForm.username, ruleForm.pass)
-        .then(rs => {
-          setCookie(rs.access_token);
-          useUserAuthenticatedStore().state = true;
-          router.replace(sessionStorage.getItem('redirectPath') || '/defaultpath');
-          sessionStorage.removeItem('redirectPath');
-          // alertMsg.value = rs;
-          // alertType.value = 'success';
-          // ShowMsg.value = true;
-          // LgText.value = 'ĐANG CHUYỂN HƯỚNG';
-        })
-        .catch(rs => {
-          alertMsg.value = rs.response.data.message;
-          alertType.value = 'error';
-          ShowMsg.value = true;
-          isLoading.value = false;
-          LgText.value = 'ĐĂNG NHẬP';
-        });
+      useUserAuthenticatedStore().login(ruleForm.username, ruleForm.pass).catch(rs => {
+        console.error(rs);
+      });
+      // Authenticated(ruleForm.username, ruleForm.pass)
+      //   .then(rs => {
+      //     setCookie(rs.access_token);
+      //     useUserAuthenticatedStore().state = true;
+      //     router.replace(sessionStorage.getItem('redirectPath') || '/defaultpath');
+      //     sessionStorage.removeItem('redirectPath');
+      //     // alertMsg.value = rs;
+      //     // alertType.value = 'success';
+      //     // ShowMsg.value = true;
+      //     // LgText.value = 'ĐANG CHUYỂN HƯỚNG';
+      //   })
+      //   .catch(rs => {
+      //     alertMsg.value = rs.response.data.message;
+      //     alertType.value = 'error';
+      //     ShowMsg.value = true;
+      //     isLoading.value = false;
+      //     LgText.value = 'ĐĂNG NHẬP';
+      //   });
     } else {
       isLoading.value = false;
       LgText.value = 'ĐĂNG NHẬP';
