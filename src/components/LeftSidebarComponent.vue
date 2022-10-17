@@ -5,6 +5,7 @@ import {
 const isShrink = ref(false);
 const isActive = ref(false);
 const visible = ref(false);
+// [ ] Menus vào json server
 const menus = reactive([
   {
     id: 1, text: 'Menu 1', hasSubMenu: true, submenu: [
@@ -38,6 +39,7 @@ const menus = reactive([
       { id: 3, text: 'Sub menu 3' }
     ]
   },
+  { id: 9, text: 'Menu 9', hasSubMenu: false, submenu: [] },
 ]);
 const ShrinkSideBar = () => {
   isShrink.value = !isShrink.value;
@@ -54,43 +56,46 @@ const ActiveItem = () => {
 <!-- [ ] Chuyển các css của component menu và submenu sang css dùng chung-->
 
 <template>
-  <div class="sidebar-container" :class="isShrink?'shrink':''">
+  <div class="sidebar-container align-self-center" :class="isShrink?'shrink':''">
     <button class="sidebar-viewButton" type="button" aria-label="Đóng Sidebar" title="Đóng" @click="ShrinkSideBar">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      <svg
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="feather feather-chevron-left">
-        <polyline points="15 18 9 12 15 6"></polyline>
+        class="feather feather-chevron-left"
+      >
+        <polyline points="15 18 9 12 15 6" />
       </svg>
     </button>
     <div class="sidebar-wrapper">
       <div class="sidebar-profileSection">
         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
         <span class="profileSection-info"><span class="text-muted"><small>Thành viên</small></span><br><span
-            class="fw-semibold">Trương Gia Huy</span></span>
+          class="fw-semibold"
+        >Trương Gia Huy</span></span>
       </div>
       <el-divider class="my-2" />
       <ul class="sidebar-list">
-          <li class="sidebar-listItem" @click="ActiveItem" :class="isActive?'active':''" >
-            <el-tooltip content="Dashboard" placement="right" :visible="visible">
-              <a @mouseenter="visible = true" @mouseleave="visible = false">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon">
-                  <rect x="3" y="3" rx="2" ry="2" class="sidebar-listIcon"></rect>
-                  <path d="M3 9h18M9 21V9"></path>
-                </svg>
-                <span class="sidebar-listItemText">Dashboard</span>
-              </a>
-            </el-tooltip>
-            
+        <li class="sidebar-listItem" :class="isActive?'active':''" @click="ActiveItem">
+          <el-tooltip content="Dashboard" placement="right" :visible="visible">
+            <a @mouseenter="visible = true" @mouseleave="visible = false">
+              <svg
+                xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon"
+              >
+                <rect x="3" y="3" rx="2" ry="2" class="sidebar-listIcon" />
+                <path d="M3 9h18M9 21V9" />
+              </svg>
+              <span class="sidebar-listItemText">Dashboard</span>
+            </a>
+          </el-tooltip>
+        </li>
+        <el-scrollbar max-height="70vh" tag="ul" view-class="list-unstyled">
+          <li v-for="menu in menus" :key="menu.id" class="sidebar-listItem">
+            <MenuItem :menu="menu" :shrink="isShrink" />
           </li>
-          <el-scrollbar :height="650" >
-          <li class="sidebar-listItem" v-for="menu in menus" :key="menu.id" >
-            <MenuItem :menu="menu"></MenuItem>
-          </li>
-          
         </el-scrollbar>
       </ul>
-      <el-divider class="my-2  mt-auto" />
+      <el-divider class="my-2" />
       <div class="sidebar-settingSection">
         <a>
           <el-icon :size="20">
@@ -101,7 +106,6 @@ const ActiveItem = () => {
       </div>
     </div>
   </div>
-
 </template>
 
 <style>
@@ -130,12 +134,10 @@ html.dark {
   width: 240px;
   position: relative;
   transition: width 0.2s ease-in-out;
-  /* height: 100vh; */
-  /* max-height: 600px; */
 }
 
 .sidebar-container.shrink {
-  width: 60px;
+  width: 92px;
 }
 
 .sidebar-viewButton {
@@ -203,13 +205,6 @@ html.dark {
   border-radius: 12px;
 }
 
-/* .sidebar-listItem:hover .sidebar-listItemText {
-  display: inline-block;
-  opacity: 1;
-  left: calc(100% + 8px);
-  visibility: visible;
-  user-select: none;
-} */
 
 .sidebar-listItem a {
   width: 100%;
@@ -235,29 +230,13 @@ html.dark {
 .sidebar-profileSection {
   display: flex;
   align-items: center;
-  /* border: 1px solid var(--el-bg-color-2); */
   padding: 8px 10px;
-  /* border-radius: 28px; */
   overflow: hidden;
   height: 60px;
   flex-shrink: 0;
   transition: background 0.3s ease-in-out;
   cursor: pointer;
 }
-
-.sidebar-profileSection:hover {
-  /* background-color: var(--el-bg-color-2); */
-}
-
-/* .sidebar-profileSection img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  margin-right: 8px;
-  flex-shrink: 0;
-} */
 
 .sidebar-profileSection span.profileSection-info {
   white-space: nowrap;
@@ -269,9 +248,6 @@ html.dark {
   display: none;
 }
 
-.shrink .sidebar-profileSection {
-  /* border-radius: 50%; */
-}
 
 .sidebar-listItemText {
   white-space: nowrap;
@@ -281,17 +257,6 @@ html.dark {
   user-select: none;
 }
 
-/* .shrink .sidebar-listItemText {
-  position: absolute;
-  padding: 8px;
-  left: 100%;
-  opacity: 0;
-  background-color: var(--secondary-bg);
-  color: #fff;
-  font-size: 12px;
-  border-radius: 4px;
-  transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
-} */
 
 .sidebar-settingSection {
   display: flex;

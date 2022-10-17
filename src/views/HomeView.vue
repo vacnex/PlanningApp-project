@@ -8,10 +8,11 @@
 </script>
 <!-- TODO -->
 <!-- [ ] Bổ sung thanh breadcum -->
-<!-- [ ] dựng view quản lý task tuần -->
+<!-- [ ] Dựng view quản lý task tuần -->
+<!-- [ ] Dựng view chọn project -->
 <template>
   <el-container>
-    <LeftSidebarComponent></LeftSidebarComponent>
+    <LeftSidebarComponent />
     <el-container style="min-height: 100vh;" direction="vertical">
       <HeaderComponent />
       <el-container direction="horizontal ">

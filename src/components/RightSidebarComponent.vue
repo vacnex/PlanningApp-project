@@ -1,9 +1,9 @@
 <script setup lang="ts">
 </script>
 <template>
-<section class="sidebar">
-right
-</section>
+  <section class="sidebar">
+    right
+  </section>
 </template>
 
 <style scoped>

@@ -5,18 +5,19 @@ defineProps<{
 
 
 </script>
-<template >
+<template>
   <el-tooltip :content="subMenuItem.text" placement="right">
     <a class="w-auto">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon">
-        <rect x="3" y="3" rx="2" ry="2" class="sidebar-listIcon"></rect>
-        <path d="M3 9h18M9 21V9"></path>
+      <svg
+        xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon"
+      >
+        <rect x="3" y="3" rx="2" ry="2" class="sidebar-listIcon" />
+        <path d="M3 9h18M9 21V9" />
       </svg>
-      <span class="sidebar-listItemText">{{subMenuItem.text}}</span>
+      <span class="sidebar-listItemText">{{ subMenuItem.text }}</span>
     </a>
   </el-tooltip>
-  
 </template>
 <style scoped>
 .sidebar-listItem.active a {
@@ -53,6 +54,7 @@ defineProps<{
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 20px;
+  user-select: none;
 }
 
 .shrink .sidebar-listItemText {

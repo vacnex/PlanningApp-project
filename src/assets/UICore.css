@@ -125,6 +125,7 @@ body {
 }
 * {
   font-family: var(--el-font-family);
+  box-sizing: border-box;
 }
 
 #app{

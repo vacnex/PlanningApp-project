@@ -85,8 +85,12 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   <div class="login-page">
     <div class="login-box">
       <div id="login-form">
-        <p class="form-title animated fadeInUp">Welcome back</p>
-        <p class="animated fadeInUp delay-2s fast">Đăng nhập vào Dashboard</p>
+        <p class="form-title animated fadeInUp">
+          Welcome back
+        </p>
+        <p class="animated fadeInUp delay-2s fast">
+          Đăng nhập vào Dashboard
+        </p>
         <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules" status-icon>
           <el-form-item prop="username" size="large">
             <el-input v-model="ruleForm.username" class="mb-2 animated fadeInUp delay-3s fast" placeholder="Tên đăng nhập" size="large">
@@ -107,16 +111,17 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             </el-input>
           </el-form-item>
           
-          <el-alert :title="alertMsg" :type="alertType" :closable="false" v-show="ShowMsg" class="mb-2 animated fadeInUp" />
+          <el-alert v-show="ShowMsg" :title="alertMsg" :type="alertType" :closable="false" class="mb-2 animated fadeInUp" />
           <el-form-item class="">
-            <el-checkbox v-model="checkboxRememberMe" label="Ghi nhớ đăng nhập" size="large" class="animated fadeInUp delay-5s fast"/>
-            <el-button class="w-100 animated fadeInUp delay-5s fast" type="primary" size="large"
-              @click="submitForm(ruleFormRef)" :loading="isLoading">
-              {{LgText}}</el-button>
+            <el-checkbox v-model="checkboxRememberMe" label="Ghi nhớ đăng nhập" size="large" class="animated fadeInUp delay-5s fast" />
+            <el-button
+              class="w-100 animated fadeInUp delay-5s fast" type="primary" size="large"
+              :loading="isLoading" @click="submitForm(ruleFormRef)"
+            >
+              {{ LgText }}
+            </el-button>
           </el-form-item>
-
         </el-form>
-
       </div>
       <div class="illustration-wrapper py-5 pe-5">
         <img src="../assets/img/workload-planning.png" alt="Login">

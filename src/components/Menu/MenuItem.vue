@@ -2,87 +2,62 @@
 import {
   ArrowDown
 } from '@element-plus/icons-vue';
-defineProps<{
-  menu: { id: number, text: String, hasSubMenu: boolean, submenu: { id: any, text: String }[] }
+const visible = ref(false);
+const props = defineProps<{
+  menu: { id: number, text: String, hasSubMenu: boolean, submenu: { id: any, text: String }[] },
+  shrink: boolean
 }>();
-const showSubMenu = ref(false);
-const ToggleSubMenu = () => {
-  showSubMenu.value = !showSubMenu.value;
-};
+const { shrink } = toRefs(props);
 
+const showCollapseSubMenu = ref(false);
+
+const ToggleSubMenu = () => {
+  console.log(showCollapseSubMenu.value, shrink.value);
+  showCollapseSubMenu.value = !showCollapseSubMenu.value;
+};
 </script>
 <template>
-  <div class="w-100" v-if="menu.hasSubMenu">
+  <div v-if="menu.hasSubMenu" class="w-100">
     <el-tooltip :content="menu.text" placement="right">
       <a class="w-auto" @click="ToggleSubMenu">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon">
-          <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
+        <svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon"
+        >
+          <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
           <path
-            d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z">
-          </path>
+            d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"
+          />
         </svg>
-        <span class="sidebar-listItemText">{{menu.text}}</span>
-        <el-icon class="ms-auto submenu-icon" style="transform: none;" :class="showSubMenu?'submenu-shrink':''">
+        <span class="sidebar-listItemText">{{ menu.text }}</span>
+        <el-icon class="ms-auto submenu-icon" style="transform: none;" :class="showCollapseSubMenu?'submenu-shrink':''">
           <ArrowDown />
         </el-icon>
       </a>
     </el-tooltip>
 
     <el-collapse-transition>
-      <ul class="list-unstyled ms-3 sidebar-submenu" v-show="showSubMenu">
+      <ul v-show="showCollapseSubMenu" class="list-unstyled ms-3 sidebar-submenu">
         <li v-for="subMenuItem in menu.submenu" :key="subMenuItem.id">
-          <SubmenuItem :subMenuItem="subMenuItem"></SubmenuItem>
+          <SubmenuItem :sub-menu-item="subMenuItem" />
         </li>
       </ul>
     </el-collapse-transition>
   </div>
-  <el-tooltip v-else :content="menu.text" placement="right">
-    <a>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-        <line x1="16" y1="2" x2="16" y2="6"></line>
-        <line x1="8" y1="2" x2="8" y2="6"></line>
-        <line x1="3" y1="10" x2="21" y2="10"></line>
+  <el-tooltip v-else :content="menu.text" placement="right" :visible="visible">
+    <a @mouseenter="visible = true" @mouseleave="visible = false">
+      <svg
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon"
+      >
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+        <line x1="16" y1="2" x2="16" y2="6" />
+        <line x1="8" y1="2" x2="8" y2="6" />
+        <line x1="3" y1="10" x2="21" y2="10" />
       </svg>
-      <span class="sidebar-listItemText">{{menu.text}}</span>
+      <span class="sidebar-listItemText">{{ menu.text }}</span>
     </a>
   </el-tooltip>
-
-
-
-
-
-
-
-  <!-- <a @click="ToggleSubMenu">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"
-      stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon">
-      <rect x="3" y="3" rx="2" ry="2" class="sidebar-listIcon"></rect>
-      <path d="M3 9h18M9 21V9"></path>
-    </svg>
-    <span class="sidebar-listItemText">{{ menu.text }}</span>
-    <el-icon class="ms-auto submenu-icon" style="transform: none;" v-if="menu.hasSubMenu">
-      <ArrowDown />
-    </el-icon>
-  </a>
-  <el-collapse-transition>
-  <ul class="list-unstyled m-0 sidebar-sublist ps-3 py-2 gap-2" v-if="menu.hasSubMenu" v-show="showSubMenu"
-    :class="showSubMenu?'d-flex':''">
-    <li class="sidebar-listSubItem" v-for="subitem in menu.submenu" :key="subitem.id">
-      <a>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon">
-          <rect x="3" y="3" rx="2" ry="2" class="sidebar-listIcon"></rect>
-          <path d="M3 9h18M9 21V9"></path>
-        </svg>
-        <span class="sidebar-listItemText">{{subitem.text}}</span>
-      </a>
-    </li>
-  </ul>
-  </el-collapse-transition> -->
-
 </template>
 <style scoped>
 .sidebar-listItem {
@@ -110,14 +85,6 @@ const ToggleSubMenu = () => {
   background-color: var(--el-bg-color-2);
   border-radius: 12px;
 }
-
-/* .sidebar-listItem:hover .sidebar-listItemText {
-  display: inline-block;
-  opacity: 1;
-  left: calc(100% + 8px);
-  visibility: visible;
-  user-select: none;
-} */
 
 .sidebar-listItem a {
   width: 100%;
@@ -147,18 +114,6 @@ const ToggleSubMenu = () => {
   line-height: 20px;
   user-select: none;
 }
-
-/* .shrink .sidebar-listItemText {
-  position: absolute;
-  padding: 8px;
-  left: 100%;
-  opacity: 0;
-  background-color: var(--secondary-bg);
-  color: #fff;
-  font-size: 12px;
-  border-radius: 4px;
-  transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
-} */
 
 .submenu-icon {
   transition: transform var(--el-transition-duration);
