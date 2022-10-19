@@ -62,9 +62,15 @@ function GetUserInfo({ username, password }) {
   const user = data.Users.find(
     user => user.username === username && user.password === password
   );
-  return { id: user.id, role: user.role };
+  return { id: user.id, role: user.role, name: user.name };
 }
-
+function GetJoinedProjects(userIDparam) {
+  return data.Projects.filter(p =>
+    data.ProjectUser.find(
+      ({ projectID, userID }) => p.id == projectID && userIDparam == userID
+    )
+  );
+}
 // #region API Login
 /** A POST request to the /api/login endpoint. It takes the username and password from the request body, and checks if the user exists in the data.Users array. If the user exists, it returns a token with the id and role of the user. If the user doesn't exist, it returns an error. */
 server.post('/api/login', (req, res) => {
@@ -77,9 +83,37 @@ server.post('/api/login', (req, res) => {
   }
   const { id, role } = GetUserInfo({ username, password });
   const access_token = createToken({ id, role });
-  res.status(200).json({ access_token });
+  res
+    .status(200)
+    .json({ access_token, user: GetUserInfo({ username, password }) });
 });
 // #endregion
+
+server.get('/api/getjoinedprojects', (req, res) => {
+  const userID = req.query?.userID;
+  const projects = GetJoinedProjects(userID);
+  if (projects.length) {
+    res.status(200).json({ projects });
+  } else {
+    const status = 404;
+    const message = 'User not join any project';
+    res.status(404).json({ status, message });
+  }
+
+  // GetJoinedProjects(userID);
+  // const { username, password } = req.body;
+  // if (IsUserExist({ username, password }) === false) {
+  //   const status = 401;
+  //   const message = 'Sai tên đăng nhập hoặc mật khẩu';
+  //   res.status(status).json({ status, message });
+  //   return;
+  // }
+  // const { id, role } = GetUserInfo({ username, password });
+  // const access_token = createToken({ id, role });
+  // res
+  //   .status(200)
+  //   .json({ access_token, user: GetUserInfo({ username, password }) });
+});
 
 server.use(/^(?!\/api).*$/, (req, res, next) => {
   if (

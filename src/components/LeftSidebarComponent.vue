@@ -48,11 +48,13 @@ const ActiveItem = () => {
   isActive.value = !isActive.value;
 };
 
+const curUser = useUserInfoStore().get_user_infor();
+
 </script>
 <!-- TODO -->
 <!-- [ ] Chuyển svg thành component-->
 <!-- [ ] Show submenu dạng dropdown khi sidebar shrink-->
-<!-- [ ] Load thông tin user lên sidebar-profileSection-->
+<!-- [x] Load thông tin user lên sidebar-profileSection-->
 <!-- [ ] Chuyển các css của component menu và submenu sang css dùng chung-->
 
 <template>
@@ -69,9 +71,9 @@ const ActiveItem = () => {
     <div class="sidebar-wrapper">
       <div class="sidebar-profileSection">
         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-        <span class="profileSection-info"><span class="text-muted"><small>Thành viên</small></span><br><span
+        <span class="profileSection-info ps-3"><span class="text-muted"><small>{{ curUser['role'] }}</small></span><br><span
           class="fw-semibold"
-        >Trương Gia Huy</span></span>
+        >{{ curUser['name'] }}</span></span>
       </div>
       <el-divider class="my-2" />
       <ul class="sidebar-list">

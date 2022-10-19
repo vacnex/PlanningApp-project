@@ -74,6 +74,7 @@ declare global {
   const useSlots: typeof import('vue')['useSlots']
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useUserAuthenticatedStore: typeof import('./stores/UserStore/UserAuthenticated')['useUserAuthenticatedStore']
+  const useUserInfoStore: typeof import('./stores/UserStore/UserInfor')['useUserInfoStore']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']

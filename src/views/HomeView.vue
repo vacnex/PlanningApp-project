@@ -7,15 +7,16 @@
 
 </script>
 <!-- TODO -->
-<!-- [ ] Bổ sung thanh breadcum -->
+<!-- [x] Bổ sung thanh breadcum -->
 <!-- [ ] Dựng view quản lý task tuần -->
-<!-- [ ] Dựng view chọn project -->
+<!-- [x] Dựng view chọn project -->
 <template>
+  <ProjectSelect />
   <el-container>
     <LeftSidebarComponent />
     <el-container style="min-height: 100vh;" direction="vertical">
       <HeaderComponent />
-      <el-container direction="horizontal ">
+      <el-container direction="horizontal">
         <el-main>
           home page conent
         </el-main>

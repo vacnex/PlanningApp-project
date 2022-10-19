@@ -14,7 +14,7 @@ export const useUserAuthenticatedStore = defineStore({
   }),
   actions: {
     async login(username: string, password: string) {
-      return await fetchWrapper.post('/login', null, { username: username, password: password }).then(rs => { 
+      return await fetchWrapper.post('/login', { username: username, password: password }).then(rs => { 
         this.state = true;
 
         const now = new Date();
@@ -26,8 +26,8 @@ export const useUserAuthenticatedStore = defineStore({
         // redirect to previous url or default to home page
         router.push(sessionStorage.getItem('redirectPath') || '/');
 
-
-        // console.info('thành công', rs.data.access_token);
+        localStorage.setItem('user', JSON.stringify(rs.data.user));
+        // console.info('thành công', rs.data);
 
       });
 

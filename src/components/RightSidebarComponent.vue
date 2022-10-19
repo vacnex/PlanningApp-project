@@ -1,7 +1,7 @@
 <script setup lang="ts">
 </script>
 <template>
-  <section class="sidebar">
+  <section class="sidebar my-1">
     right
   </section>
 </template>

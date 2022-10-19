@@ -12,19 +12,33 @@ export const fetchWrapper = {
   delete: request('DELETE')
 };
 function request(method:string) {
-  return (url: string, params: any, data: Object) => {
-    const apiPath = 'http://localhost:3000/api';
-    const options = {
-      method: method,
-      url: url,
-      baseURL: apiPath,
-      headers: authHeader(),
-      params: params,
-      data: data
+  if (method === 'GET') {
+    return (url: string, params: Object) => {
+      const apiPath = 'http://localhost:3000/api';
+      const options = {
+        method: method,
+        url: url,
+        baseURL: apiPath,
+        headers: authHeader(),
+        params: params,
+      };
+      // return fetch(url, requestOptions).then(handleResponse);
+      return axios.request(options);
     };
-    // return fetch(url, requestOptions).then(handleResponse);
-    return axios.request(options);
-  };
+  } else {
+    return (url: string,data: Object) => {
+      const apiPath = 'http://localhost:3000/api';
+      const options = {
+        method: method,
+        url: url,
+        baseURL: apiPath,
+        headers: authHeader(),
+        data: data
+      };
+      // return fetch(url, requestOptions).then(handleResponse);
+      return axios.request(options);
+    };
+  }
 }
 
 

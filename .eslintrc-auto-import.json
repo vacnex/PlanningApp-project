@@ -73,6 +73,7 @@
     "useSlots": true,
     "useToggle": true,
     "useUserAuthenticatedStore": true,
+    "useUserInfoStore": true,
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
