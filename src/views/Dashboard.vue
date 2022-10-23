@@ -1,8 +1,7 @@
 <script setup lang="ts">
 </script>
-
 <template>
-  <main>
-    Lead view
-  </main>
+  dashboard 
 </template>
+<style scoped>
+</style>

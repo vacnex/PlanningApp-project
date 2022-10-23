@@ -19,6 +19,6 @@
   border-bottom-left-radius: 16px;
   border-top-left-radius: 16px;
   padding: 24px 26px;
-  min-width:15vw
+  min-width: 15vw
 }
 </style>

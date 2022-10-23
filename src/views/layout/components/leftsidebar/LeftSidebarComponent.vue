@@ -1,45 +1,18 @@
 <script setup lang="ts">
-import {
-  Setting
-} from '@element-plus/icons-vue';
+
 const isShrink = ref(false);
 const isActive = ref(false);
 const visible = ref(false);
 // [ ] Menus vào json server
 const menus = reactive([
-  {
-    id: 1, text: 'Menu 1', hasSubMenu: true, submenu: [
-      { id: 1, text: 'Sub menu 1' },
-      { id: 2, text: 'Sub menu 2' },
-      { id: 3, text: 'Sub menu 3' }
-    ]
-  },
-  { id: 2, text: 'Menu 2', hasSubMenu: false, submenu: [] },
-  { id: 3, text: 'Menu 3', hasSubMenu: false, submenu: [] },
-  { id: 4, text: 'Menu 4', hasSubMenu: false, submenu: [] },
-  {
-    id: 5, text: 'Menu 5', hasSubMenu: true, submenu: [
-      { id: 1, text: 'Sub menu 1' },
-      { id: 2, text: 'Sub menu 2' },
-      { id: 3, text: 'Sub menu 3' }
-    ]
-  },
-  { id: 6, text: 'Menu 6', hasSubMenu: false, submenu: [] },
-  {
-    id: 7, text: 'Menu 7', hasSubMenu: true, submenu: [
-      { id: 1, text: 'Sub menu 1' },
-      { id: 2, text: 'Sub menu 2' },
-      { id: 3, text: 'Sub menu 3' }
-    ]
-  },
-  {
-    id: 8, text: 'Menu 8', hasSubMenu: true, submenu: [
-      { id: 1, text: 'Sub menu 1' },
-      { id: 2, text: 'Sub menu 2' },
-      { id: 3, text: 'Sub menu 3' }
-    ]
-  },
-  { id: 9, text: 'Menu 9', hasSubMenu: false, submenu: [] },
+  // {
+  //   id: 1, text: 'Menu 1', hasSubMenu: true, submenu: [
+  //     { id: 1, text: 'Sub menu 1' },
+  //     { id: 2, text: 'Sub menu 2' },
+  //     { id: 3, text: 'Sub menu 3' }
+  //   ]
+  // },
+  { id: 1, text: 'Quản lý công việc tuần', hasSubMenu: false, submenu: [] },
 ]);
 const ShrinkSideBar = () => {
   isShrink.value = !isShrink.value;
@@ -48,14 +21,16 @@ const ActiveItem = () => {
   isActive.value = !isActive.value;
 };
 
-const curUser = useUserInfoStore().get_user_infor();
 
 </script>
 <!-- TODO -->
 <!-- [ ] Chuyển svg thành component-->
 <!-- [ ] Show submenu dạng dropdown khi sidebar shrink-->
-<!-- [x] Load thông tin user lên sidebar-profileSection-->
+<!-- [x] Load thông tin user lên header-->
 <!-- [ ] Chuyển các css của component menu và submenu sang css dùng chung-->
+<!-- [ ] Chuyển sang dùng element menu component-->
+<!-- [ ] Thêm logo-->
+<!-- [ ] Them router link cho các màn hình-->
 
 <template>
   <div class="sidebar-container align-self-center" :class="isShrink?'shrink':''">
@@ -69,12 +44,6 @@ const curUser = useUserInfoStore().get_user_infor();
       </svg>
     </button>
     <div class="sidebar-wrapper">
-      <div class="sidebar-profileSection">
-        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-        <span class="profileSection-info ps-3"><span class="text-muted"><small>{{ curUser['role'] }}</small></span><br><span
-          class="fw-semibold"
-        >{{ curUser['name'] }}</span></span>
-      </div>
       <el-divider class="my-2" />
       <ul class="sidebar-list">
         <li class="sidebar-listItem" :class="isActive?'active':''" @click="ActiveItem">
@@ -98,14 +67,6 @@ const curUser = useUserInfoStore().get_user_infor();
         </el-scrollbar>
       </ul>
       <el-divider class="my-2" />
-      <div class="sidebar-settingSection">
-        <a>
-          <el-icon :size="20">
-            <Setting />
-          </el-icon>
-          <span class="sidebar-listItemText">Cài đặt</span>
-        </a>
-      </div>
     </div>
   </div>
 </template>
@@ -134,6 +95,7 @@ html.dark {
   border-radius: 16px;
   padding: 16px;
   width: 240px;
+  height: 98vh;
   position: relative;
   transition: width 0.2s ease-in-out;
 }

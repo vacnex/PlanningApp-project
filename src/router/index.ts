@@ -1,5 +1,5 @@
 // import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import MainLayout from '../views/layout/MainLayout.vue';
 // import { useUserAuthenticatedStore } from '@/stores/UserStore/UserAuthenticated';
 
 const router = createRouter({
@@ -8,26 +8,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
-      meta: { requiresAuth: true }
+      component: MainLayout,
+      redirect: '/Dashboard',
+      meta: {
+        requiresAuth: true,
+        title: 'Dashboard'
+      },
+      children: [
+        {
+          path: '/Dashboard',
+          name: 'Dashboard',
+          component: () => import('../views/Dashboard.vue'),
+          meta: {
+            title: 'Dashboard'
+          }
+        },
+        {
+          path: '/QuanLyCongViecTuan',
+          name: 'QuanLyCongViecTuan',
+          component: () => import('../views/WeeklyTaskView/WeeklyTaskView.vue'),
+          meta: {
+            title: 'Quản lý công việc tuần'
+          }
+        }
+      ]
     },
     {
-      path: '/manager',
-      name: 'manager',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ManagerView.vue'),
-      meta: { requiresAuth: true }
-    },{
-      path: '/lead',
-      name: 'lead',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/LeadView.vue'),
-      meta: { requiresAuth: true }
-    },{
       path: '/login',
       name: 'login',
       // route level code-splitting
@@ -38,6 +44,13 @@ const router = createRouter({
   ],
 });
 router.beforeEach((to, from, next) => {
+
+  const nearestWithTitle = to.matched.slice().reverse().find(r => r.meta && r.meta.title);
+  if (nearestWithTitle) {
+    document.title = nearestWithTitle.meta.title as string;
+  }
+
+
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
   const currentUser = useUserAuthenticatedStore().state;
   if (requiresAuth && !currentUser) {

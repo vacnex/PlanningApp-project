@@ -1,7 +1,7 @@
 {
   "Users": [
     {
-      "id": 1584177315024,
+      "id": 1,
       "username": "aschuy",
       "password": "aschuy",
       "status":1,
@@ -9,7 +9,7 @@
       "name": "Truong Gia Huy"
     },
     {
-      "id": 1584177319076,
+      "id": 2,
       "username": "ascson",
       "password": "ascson",
       "status": 1,
@@ -17,7 +17,7 @@
       "name": "Nguyen Thanh Son"
     },
     {
-      "id": 1584135467076,
+      "id": 3,
       "username": "ascdat",
       "password": "ascdat",
       "status": 1,
@@ -25,12 +25,20 @@
       "name": "Phan Tan Dat"
     },
     {
-      "id": 1593847467076,
+      "id": 4,
       "username": "ascnguyen",
       "password": "ascnguyen",
       "status": 1,
       "role": "Manager",
       "name": "Vo Binh Nguyen"
+    },
+    {
+      "id": 5,
+      "username": "ascsang",
+      "password": "ascsang",
+      "status": 1,
+      "role": "Member",
+      "name": "Nguyen Thanh Sang"
     },
     {
       "id": 159736282376,
@@ -41,30 +49,123 @@
       "name": "Inactive User"
     }
   ],
-  "Tasks": [
+  "Tags":[
     {
       "id": 1,
-      "title": "Task 1"
+      "tagName": "Jira"
     },
     {
       "id": 2,
-      "title": "Task 2"
+      "tagName": "Làm gấp"
     },
     {
       "id": 3,
-      "title": "Task 3"
+      "tagName": "Hỗ trợ triển khai"
     },
     {
       "id": 4,
-      "title": "Task 4"
+      "tagName": "Bug nghiêm trọng"
+    }
+  ],
+  "Modules":[
+    {
+      "id": 1,
+      "moduleName": "Thi trực tuyến"
+    },
+    {
+      "id": 2,
+      "moduleName": "Tuyển sinh"
+    },
+    {
+      "id": 3,
+      "moduleName": "BTVN"
+    },
+    {
+      "id": 4,
+      "moduleName": "Tài chính"
+    }
+  ],
+  "Tasks": [
+    {
+      "id": 1,
+      "title": "Task 1",
+      "tags": [1,2],
+      "estimate" : 8,
+      "module": 1,
+      "isForward": false,
+      "isCustom": false
+    },
+    {
+      "id": 2,
+      "title": "Task 2",
+      "tags": [
+        1,
+        2
+      ],
+      "estimate": 8,
+      "module": 1,
+      "isForward": false,
+      "isCustom": false
+    },
+    {
+      "id": 3,
+      "title": "Task 3",
+      "tags": [
+        1,
+        2
+      ],
+      "estimate": 8,
+      "module": 1,
+      "isForward": false,
+      "isCustom": false
+    },
+    {
+      "id": 4,
+      "title": "Task 4",
+      "tags": [
+        1,
+        2
+      ],
+      "estimate": 8,
+      "module": 1,
+      "isForward": false,
+      "isCustom": false
     },
     {
       "id": 5,
-      "Title": "Task 5"
+      "Title": "Task 5",
+      "tags": [
+        1,
+        2
+      ],
+      "estimate": 8,
+      "module": 1,
+      "isForward": false,
+      "isCustom": false
     },
     {
       "id": 6,
-      "Title": "Task 6"
+      "Title": "Task 6",
+      "tags": [
+        1,
+        2
+      ],
+      "estimate": 8,
+      "module": 1,
+      "isForward": false,
+      "isCustom": false
+    },
+    {
+      "id": 7,
+      "Title": "Task 7",
+      "tags": [
+        1,
+        2
+      ],
+      "estimate": 8,
+      "module": 4,
+      "isForward": false,
+      "isCustom": false
     }
   ],
   "TaskProject": [
@@ -117,17 +218,58 @@
     {
       "id": 1,
       "projectID": 1,
-      "userID": 1584135467076
+      "userID": 3
     },
     {
       "id": 2,
       "projectID": 3,
-      "userID": 1593847467076
+      "userID": 4
     },
     {
       "id": 3,
       "projectID": 2,
-      "userID": 1584135467076
+      "userID": 3
+    }
+  ],
+  "TaskUser": [
+    {
+      "id": 1,
+      "taskID": 1,
+      "userID": 1,
+      "asginBy": 1
+    },{
+      "id": 2,
+      "taskID": 2,
+      "userID": 1,
+      "asginBy": 3
+    },
+    {
+      "id": 3,
+      "taskID": 3,
+      "userID": 2,
+      "asginBy": 3
+    },
+    {
+      "id": 4,
+      "taskID": 4,
+      "userID": 2,
+      "asginBy": 3
+    },
+    {
+      "id": 5,
+      "taskID": 5,
+      "userID": 5,
+      "asginBy": 5
+    },{
+      "id": 6,
+      "taskID": 6,
+      "userID": 5,
+      "asginBy": 5
+    },{
+      "id": 7,
+      "taskID": 7,
+      "userID": 5,
+      "asginBy": 5
     }
   ]
 }

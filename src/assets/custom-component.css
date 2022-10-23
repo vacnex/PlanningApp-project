@@ -1,0 +1,60 @@
+.v-contextmenu{
+  border-radius: 10px;
+  padding:13px 10px
+}
+.v-contextmenu-icon{
+  
+}
+.v-contextmenu-inner{
+  
+}
+.v-contextmenu-divider{
+  
+}
+.v-contextmenu-item{
+  display: flex;
+  align-items: center;
+  height:45px;
+}
+.v-contextmenu-item--hover{
+  color: inherit;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+  background-color: inherit;
+  border-radius: 10px;
+}
+.v-contextmenu-item--disabled{
+  
+}
+.v-contextmenu-group{
+  
+}
+.v-contextmenu-group__title{
+  
+}
+.v-contextmenu-group__menus{
+  
+}
+.v-contextmenu-submenu{
+  
+}
+.v-contextmenu-submenu__title{
+
+}
+.v-contextmenu-submenu__menus{
+  
+}
+.v-contextmenu-submenu__menus--top{
+
+}
+.v-contextmenu-submenu__menus--right{
+
+}
+.v-contextmenu-submenu__menus--bottom{
+  
+}
+.v-contextmenu-submenu__menus--left{
+  
+}
+.v-contextmenu-submenu__arrow{
+  
+}

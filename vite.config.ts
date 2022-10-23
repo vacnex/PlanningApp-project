@@ -25,11 +25,21 @@ export default defineConfig({
           'vue-router': [
             'createRouter',
             'createWebHistory',
+            'useRoute',
+            'useRouter'
           ],
           //Vue-Use helper import
           '@vueuse/core': [
             'useDark',
             'useToggle'
+          ],
+          //mitt helper import
+          'mitt': [
+            ['default', 'mitt']
+          ],
+          //contextmenu helper import
+          'v-contextmenu': [
+            ['default', 'contextmenu']
           ],
           //Fetch library
           //, 'AxiosInstance', 'AxiosRequestConfig', 'AxiosResponse'
