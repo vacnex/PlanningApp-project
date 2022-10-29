@@ -1,71 +1,51 @@
 <script setup lang="ts">
-
-const isShrink = ref(false);
-const isActive = ref(false);
+import {
+  Menu as IconMenu,
+  House,
+  ArrowLeft,
+  ArrowRight
+} from '@element-plus/icons-vue';
+const isCollapse = ref(true);
 const visible = ref(false);
-// [ ] Menus vào json server
-const menus = reactive([
-  // {
-  //   id: 1, text: 'Menu 1', hasSubMenu: true, submenu: [
-  //     { id: 1, text: 'Sub menu 1' },
-  //     { id: 2, text: 'Sub menu 2' },
-  //     { id: 3, text: 'Sub menu 3' }
-  //   ]
-  // },
-  { id: 1, text: 'Quản lý công việc tuần', hasSubMenu: false, submenu: [] },
-]);
+const router = useRouter();
 const ShrinkSideBar = () => {
-  isShrink.value = !isShrink.value;
+  isCollapse.value = !isCollapse.value;
 };
-const ActiveItem = () => {
-  isActive.value = !isActive.value;
-};
-
 
 </script>
 <!-- TODO -->
-<!-- [ ] Chuyển svg thành component-->
-<!-- [ ] Show submenu dạng dropdown khi sidebar shrink-->
-<!-- [x] Load thông tin user lên header-->
-<!-- [ ] Chuyển các css của component menu và submenu sang css dùng chung-->
-<!-- [ ] Chuyển sang dùng element menu component-->
+<!-- [x] Chuyển sang dùng element menu component-->
 <!-- [ ] Thêm logo-->
-<!-- [ ] Them router link cho các màn hình-->
-
+<!-- [x] Dùng router cho các menu-->
 <template>
-  <div class="sidebar-container align-self-center" :class="isShrink?'shrink':''">
-    <button class="sidebar-viewButton" type="button" aria-label="Đóng Sidebar" title="Đóng" @click="ShrinkSideBar">
-      <svg
-        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="feather feather-chevron-left"
+  <div class="sidebar-container align-self-center">
+    <el-tooltip :visible="visible" :content="isCollapse?'Mở':'Đóng'" placement="top" effect="dark">
+      <button
+        class="sidebar-viewButton" type="button" aria-label="Đóng Sidebar"
+        @click="ShrinkSideBar" @mouseenter="visible = true" @mouseleave="visible = false"
       >
-        <polyline points="15 18 9 12 15 6" />
-      </svg>
-    </button>
+        <el-icon :size="24">
+          <ArrowLeft v-if="!isCollapse" />
+          <ArrowRight v-else />
+        </el-icon>
+      </button>
+    </el-tooltip>
+   
     <div class="sidebar-wrapper">
       <el-divider class="my-2" />
-      <ul class="sidebar-list">
-        <li class="sidebar-listItem" :class="isActive?'active':''" @click="ActiveItem">
-          <el-tooltip content="Dashboard" placement="right" :visible="visible">
-            <a @mouseenter="visible = true" @mouseleave="visible = false">
-              <svg
-                xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sidebar-listIcon"
-              >
-                <rect x="3" y="3" rx="2" ry="2" class="sidebar-listIcon" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-              <span class="sidebar-listItemText">Dashboard</span>
-            </a>
-          </el-tooltip>
-        </li>
-        <el-scrollbar max-height="70vh" tag="ul" view-class="list-unstyled">
-          <li v-for="menu in menus" :key="menu.id" class="sidebar-listItem">
-            <MenuItem :menu="menu" :shrink="isShrink" />
-          </li>
-        </el-scrollbar>
-      </ul>
+      <el-menu class="el-menu-vertical-demo" :collapse="isCollapse" :router="true">
+        <template v-for="rule in router.currentRoute.value.matched[0].children" :key="rule">
+          <el-menu-item :index="rule.path">
+            <el-icon>
+              <House v-if="rule.name =='Dashboard'" />
+              <icon-menu v-else />
+            </el-icon>
+            <template #title>
+              {{ rule.meta?.title }}
+            </template>
+          </el-menu-item>
+        </template>
+      </el-menu>
       <el-divider class="my-2" />
     </div>
   </div>
@@ -73,11 +53,22 @@ const ActiveItem = () => {
 
 <style>
 :root {
-  --Shrink-bg: #251d33
+  --Shrink-bg: #251d33;
 }
 
 html.dark {
   --Shrink-bg: var(--el-bg-color-2)
+}
+
+.el-menu li{
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+.el-sub-menu__title:hover,.el-menu-item:hover {
+  color: #1c1c28
+}
+.el-menu--popup {
+  padding: 5px 7px;
 }
 </style>
 <style scoped>
@@ -86,7 +77,12 @@ html.dark {
   flex-direction: column;
   height: 100%;
 }
-
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 240px;
+}
+.el-menu{
+  border: none;
+}
 .sidebar-container {
   background-color: var(--el-bg-color-1);
   border: .5px solid var(--el-bg-color-2);
@@ -94,7 +90,6 @@ html.dark {
   backdrop-filter: blur(80px);
   border-radius: 16px;
   padding: 16px;
-  width: 240px;
   height: 98vh;
   position: relative;
   transition: width 0.2s ease-in-out;
