@@ -23,11 +23,20 @@ const ScrollToMember = (memberID: string) => {
     });
   }
 };
+
+const projectName = computed(() => {
+  return useProjectStore().projectName;
+});
 </script>
 <template>
   <div class="member-wraper">
     <el-scrollbar>
-      <div class="d-flex gap-3 p-2">
+      <el-skeleton v-if="!projectName" style="--el-skeleton-circle-size: 40px" animated class="d-flex gap-3 p-2">
+        <template #template>
+          <el-skeleton-item v-for="item in 4" :key="item" variant="circle" />
+        </template>
+      </el-skeleton>
+      <div v-else class="d-flex gap-3 p-2">
         <div v-for="member in members" :key="member.id" :class="member.id +'-member'">
           <el-tooltip :content="member.name" placement="bottom">
             <el-avatar class="avatar" :src="'https://github.com/identicons/'+member.id+'.png'" @click="ScrollToMember(member.id)" />

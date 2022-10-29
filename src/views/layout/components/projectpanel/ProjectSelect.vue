@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const dialogVisible = ref(useProjectStore().is_selected_project() ? false : true);
+const dialogVisible = ref(useProjectStore().projectName ? false : true);
 const projects = ref([]);
 const loading = ref(true);
 const user = computed(() => {
@@ -32,7 +32,7 @@ emitter.on('openProjectPanel', () => {
   });
 });
 const handleClose = (done: () => void) => {
-  if (useProjectStore().is_selected_project()) {
+  if (useProjectStore().projectName) {
     done();
   } else {
     ElMessage({
