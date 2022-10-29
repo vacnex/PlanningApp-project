@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const dialogVisible = ref(useProjectStore().is_selected_project() ? false : true);
 const projects = ref([]);
+const loading = ref(true);
 const user = computed(() => {
   return JSON.parse(localStorage.getItem('user')??'');
 });
@@ -14,6 +15,7 @@ if (dialogVisible.value) {
   const getUserProject = useProjectStore().get_joined_projects(user.value.id);
   getUserProject.then(rs => {
     projects.value = rs.data.projects;
+    loading.value = false;
   }).catch(rs => {
     console.log(rs.response.data);
   });
@@ -24,6 +26,7 @@ emitter.on('openProjectPanel', () => {
   const getUserProject = useProjectStore().get_joined_projects(user.value.id);
   getUserProject.then(rs => {
     projects.value = rs.data.projects;
+    loading.value = false;
   }).catch(rs => {
     console.log(rs.response.data);
   });
@@ -38,11 +41,12 @@ const handleClose = (done: () => void) => {
     });
   }
 };
+
 </script>
 
 <template>
   <el-dialog v-model="dialogVisible" title="CHỌN DỰ ÁN" align-center center :before-close="handleClose">
-    <div class="d-flex justify-content-center gap-5">
+    <div v-loading="loading" class="d-flex justify-content-center gap-5">
       <el-card v-for="project in projects" :key="project['id']" shadow="hover" class="project-card" @click="SelectProject(project['id'])">
         <div class="d-flex flex-column align-items-center gap-3">
           <el-image src="src\assets\img\Imgplaceholder.svg" />

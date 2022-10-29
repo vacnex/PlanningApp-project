@@ -48,14 +48,17 @@ declare module '@vue/runtime-core' {
     MainContent: typeof import('./views/layout/components/MainContent.vue')['default']
     MainLayout: typeof import('./views/layout/MainLayout.vue')['default']
     MemberComponent: typeof import('./views/WeeklyTaskView/components/MemberComponent.vue')['default']
-    MenuItem: typeof import('./components/Menu/MenuItem.vue')['default']
+    MenuItem: typeof import('./views/layout/components/leftsidebar/menu/MenuItem.vue')['default']
     PageHeaderComponent: typeof import('./views/layout/components/header/PageHeaderComponent.vue')['default']
     PageSidebarComponent: typeof import('./views/layout/components/pagesidebar/PageSidebarComponent.vue')['default']
     ProjectSelect: typeof import('./views/layout/components/projectpanel/ProjectSelect.vue')['default']
     RightSidebarComponent: typeof import('./components/RightSidebarComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SubmenuItem: typeof import('./components/Menu/SubmenuItem.vue')['default']
+    SubmenuItem: typeof import('./views/layout/components/leftsidebar/menu/SubmenuItem.vue')['default']
     WeeklyTaskView: typeof import('./views/WeeklyTaskView/WeeklyTaskView.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }
