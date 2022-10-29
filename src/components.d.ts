@@ -7,8 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    2: typeof import('./views/layout/components/pagesidebar/components/SelfPinListComponent copy 2.vue')['default']
     BreadcrumbComponent: typeof import('./views/layout/components/header/components/BreadcrumbComponent.vue')['default']
     ConnfigDrawer: typeof import('./views/layout/components/setting/ConnfigDrawer.vue')['default']
+    copy: typeof import('./views/layout/components/pagesidebar/components/TeamPinItemComponent copy.vue')['default']
     Dashboard: typeof import('./views/Dashboard.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
@@ -59,11 +61,17 @@ declare module '@vue/runtime-core' {
     RightSidebarComponent: typeof import('./components/RightSidebarComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SelfPinComponent: typeof import('./views/layout/components/pagesidebar/components/SelfPinComponent.vue')['default']
+    SelfPinItemComponent: typeof import('./views/layout/components/pagesidebar/components/SelfPinItemComponent.vue')['default']
+    SelfPinListComponent: typeof import('./views/layout/components/pagesidebar/components/SelfPinListComponent.vue')['default']
     SubmenuItem: typeof import('./views/layout/components/leftsidebar/menu/SubmenuItem.vue')['default']
     TaskContextmenu: typeof import('./views/WeeklyTaskView/components/TaskContextmenu.vue')['default']
     TaskItemComponent: typeof import('./views/WeeklyTaskView/components/TaskItemComponent.vue')['default']
     TaskList: typeof import('./views/WeeklyTaskView/components/TaskList.vue')['default']
     TaskListComponent: typeof import('./views/WeeklyTaskView/components/TaskListComponent.vue')['default']
+    TeamPinComponent: typeof import('./views/layout/components/pagesidebar/components/TeamPinComponent.vue')['default']
+    TeamPinItemComponent: typeof import('./views/layout/components/pagesidebar/components/TeamPinItemComponent.vue')['default']
+    TeamPinListComponent: typeof import('./views/layout/components/pagesidebar/components/TeamPinListComponent.vue')['default']
     WeekGoalItemComponent: typeof import('./views/WeeklyTaskView/components/WeekGoalItemComponent.vue')['default']
     WeekGoalListComponent: typeof import('./views/WeeklyTaskView/components/WeekGoalListComponent.vue')['default']
     WeeklyTaskView: typeof import('./views/WeeklyTaskView/WeeklyTaskView.vue')['default']

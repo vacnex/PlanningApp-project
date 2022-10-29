@@ -1,8 +1,9 @@
 <script setup lang="ts">
 </script>
 <template>
-  <section class="sidebar my-1">
-    right
+  <section class="sidebar my-1 d-flex flex-column gap-2">
+    <TeamPinListComponent />
+    <SelfPinListComponent />
   </section>
 </template>
 
@@ -18,7 +19,7 @@
 
   border-bottom-left-radius: 16px;
   border-top-left-radius: 16px;
-  padding: 24px 26px;
+  padding: 16px 18px;
   min-width: 15vw
 }
 </style>
