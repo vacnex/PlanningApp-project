@@ -30,6 +30,14 @@ const router = createRouter({
           meta: {
             title: 'Quản lý công việc tuần'
           }
+        },
+        {
+          path: '/ThongTinMucTieu',
+          name: 'ThongTinMucTieu',
+          component: () => import('../views/GoalInfoView/GoalInfoView.vue'),
+          meta: {
+            title: 'Thông tin mục tiêu'
+          }
         }
       ]
     },

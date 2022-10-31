@@ -11,14 +11,13 @@ import {  Setting, View } from '@element-plus/icons-vue';
 // [ ] Chức năng trong contextmenu (xem chi tiết)
 // [ ] Bổ sung component filter, nút thêm
 // [ ] Bổ sung panel cho widget
-// [ ] Bổ sung component filter, nút thêm
 // [ ] Bổ sung trạng thái chuyển của task
-// [ ] Bổ sung component filter, nút thêm
 
 <template>
   <el-row>
     <el-col :span="13">
       <MemberComponent />
+      <TaskFilterComponent />
       <TaskListComponent />
     </el-col>
     <el-col :span="11">

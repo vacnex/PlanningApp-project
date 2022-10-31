@@ -20,7 +20,7 @@ const members = [{
 
 <template>
   <div class="task-list">
-    <el-scrollbar height="75vh" view-class="d-flex flex-column gap-3 p-2">
+    <el-scrollbar height="70vh" view-class="d-flex flex-column gap-3 p-2">
       <MemberTaskListComponent v-for="member in members" :id="member.id" :key="member.id" :name="member.name" :tasks="10" />
     </el-scrollbar>
   </div>

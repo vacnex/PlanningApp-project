@@ -10,6 +10,7 @@ const getBreadcrumb = (): void => {
   console.log(route);
   console.log(router);
   console.log(router.currentRoute.value);
+  levelList.value = [];
   if (router.currentRoute.value.name != 'home' && router.currentRoute.value.name != 'Dashboard') {
     levelList.value.push(router.currentRoute.value);
   } else {

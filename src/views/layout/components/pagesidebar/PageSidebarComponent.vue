@@ -20,6 +20,7 @@
   border-bottom-left-radius: 16px;
   border-top-left-radius: 16px;
   padding: 16px 18px;
-  min-width: 15vw
+  max-width: 20vw;
+  min-width: 20vw;
 }
 </style>
