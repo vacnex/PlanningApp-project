@@ -84,4 +84,5 @@ export default defineConfig({
       '~animate': path.resolve(__dirname, 'node_modules/animate.css/source'),
     },
   },
+  base: '/PlanningApp-project/'
 });
