@@ -40,6 +40,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     if (valid) {
       useUserAuthenticatedStore().login(ruleForm.username, ruleForm.pass).catch(rs => {
         console.error(rs);
+        
       });
       // Authenticated(ruleForm.username, ruleForm.pass)
       //   .then(rs => {
