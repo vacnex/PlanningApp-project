@@ -36,7 +36,7 @@ const handleClose = (done: () => void) => {
     done();
   } else {
     ElMessage({
-      message: 'Vui lòng chọn dự án.',
+      message: 'Chưa chọn chọn dự án.',
       type: 'warning',
     });
   }
