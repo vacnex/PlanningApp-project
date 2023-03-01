@@ -49,7 +49,7 @@ const handleClose = (done: () => void) => {
     <div v-loading="loading" class="d-flex justify-content-center gap-5">
       <el-card v-for="project in projects" :key="project['id']" shadow="hover" class="project-card" @click="SelectProject(project['id'])">
         <div class="d-flex flex-column align-items-center gap-3">
-          <el-image src="src\assets\img\Imgplaceholder.svg" />
+          <el-image src="../../../../assets/img/workload-planning.png" />
           <div>
             <h3>{{ project['title'] }}</h3>
           </div>
