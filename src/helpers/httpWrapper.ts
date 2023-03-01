@@ -11,10 +11,10 @@ export const fetchWrapper = {
   put: request('PUT'),
   delete: request('DELETE')
 };
+const apiPath = 'http://localhost:3000/api';
 function request(method:string) {
   if (method === 'GET') {
     return (url: string, params: Object) => {
-      const apiPath = 'http://localhost:3000/api';
       const options = {
         method: method,
         url: url,
@@ -27,7 +27,6 @@ function request(method:string) {
     };
   } else {
     return (url: string,data: Object) => {
-      const apiPath = 'http://localhost:3000/api';
       const options = {
         method: method,
         url: url,
