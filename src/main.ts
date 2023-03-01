@@ -2,6 +2,7 @@
 // import { createPinia } from 'pinia';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 import 'v-contextmenu/dist/themes/default.css';
+import { ElMessage } from 'element-plus';
 
 import App from './App.vue';
 

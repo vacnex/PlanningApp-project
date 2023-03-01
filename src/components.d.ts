@@ -7,11 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    2: typeof import('./views/GoalInfoView/components/CompanyMonthListComponent copy 2.vue')['default']
     BreadcrumbComponent: typeof import('./views/layout/components/header/components/BreadcrumbComponent.vue')['default']
     CompanyMonthListComponent: typeof import('./views/GoalInfoView/components/CompanyMonthListComponent.vue')['default']
     ConnfigDrawer: typeof import('./views/layout/components/setting/ConnfigDrawer.vue')['default']
-    copy: typeof import('./views/GoalInfoView/components/SelfMonthListComponent copy.vue')['default']
     Dashboard: typeof import('./views/Dashboard.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']

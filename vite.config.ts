@@ -19,6 +19,11 @@ export default defineConfig({
     AutoImport({
       imports: [
         'vue',
+        {
+          'element-plus/es': [
+            'ElMessage'
+          ]
+        },
         'pinia',
         // 'vue-router',
         {
